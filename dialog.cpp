@@ -28,15 +28,14 @@ void Dialog::ResStatYear(QVector<double> counts, QVector<double> months)
     graphic1->AddDataToBars(months, counts);
     ui->qcp_year->xAxis->setLabel("Месяц");
     ui->qcp_year->yAxis->setLabel("Количество вылетов/прилетов");
-    ui->qcp_year->xAxis->setRange(0, 13);
-    //ui->qcp_year->yAxis->setRange(0, 7000);
+    ui->qcp_year->xAxis->setRange(1, 12);
     graphic1->UpdateGraph(ui->qcp_year);
 }
 
 void Dialog::ResStatMonth(QVector<Database::statMonth> statistic)
 {
     stat = statistic;
-    ui->qcp_month->xAxis->setRange(0, 32);
+    ui->qcp_month->xAxis->setRange(1, 31);
     graphic2->AddDataToGrahp(stat[4].days,stat[4].counts);
     ui->qcp_month->xAxis->setLabel("День");
     ui->qcp_month->yAxis->setLabel("Количество вылетов/прилетов");
