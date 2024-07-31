@@ -40,7 +40,7 @@ QSqlError Database::GetError()
 void Database::GetAirportNames()
 {
     queryModel->setQuery(AirportNameQuery,*dataBase);
-    for(int i = 0; i < 104; i++){
+    for(int i = 0; i < queryModel->rowCount(); i++){
         QString name = queryModel->data(queryModel->index(i, 0)).toString();
         QString code = queryModel->data(queryModel->index(i, 1)).toString();
         airportNames.push_back(name);
@@ -84,8 +84,7 @@ void Database::GetStatYear(int index)
                          "WHERE (scheduled_departure::date > date('2016-08-31') and scheduled_departure::date <= date('2017-08-31')) and ( departure_airport = '" + code + "' or arrival_airport = '" + code + "' ) "
                          "group by \"Month\"", *dataBase);
 
-
-    for(int i = 0; i < 12; i++) {
+    for(int i = 0; i < queryModel->rowCount(); i++) {
         int count = queryModel->data(queryModel->index(i, 0)).toInt();
         QDate date = queryModel->data(queryModel->index(i, 1)).toDate();
         int month = date.month();
@@ -105,7 +104,7 @@ void Database::GetStatMonth(int index)
     statMonth statisticMonth;
     QVector<statMonth> statFull;
     int startMonth = 9;
-    for(int i = 0; i < 365; i++){
+    for(int i = 0; i < queryModel->rowCount(); i++) {
         int count = queryModel->data(queryModel->index(i, 0)).toInt();
         QDate date = queryModel->data(queryModel->index(i, 1)).toDate();
         int month = date.month();

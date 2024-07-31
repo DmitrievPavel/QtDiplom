@@ -17,8 +17,22 @@ public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
     QLabel* GetLBPtr();
+    enum MonthsNum{
+        Sep,
+        Oct,
+        Nov,
+        Dec,
+        Jan,
+        Feb,
+        Mar,
+        Apr,
+        May,
+        Jun,
+        Jul,
+        Aug
+    };
 
-
+    void AddMonths();
 public slots:
     void ResStatYear(QVector<double> counts, QVector<double> months);
     void ResStatMonth(QVector<Database::statMonth> statistic);
